@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Phidget22.NET.1.7.20210816\build\Phidget22.NET.props" Condition="Exists('..\packages\Phidget22.NET.1.7.20210816\build\Phidget22.NET.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,6 +11,7 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <ReleaseVersion>0.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,17 +49,15 @@
     <MonoBundlingExtraArgs>--linkskip phidget22 --linkskip phidget22extra</MonoBundlingExtraArgs>
     <AOTMode>None</AOTMode>
     <XamMacArch>x86_64</XamMacArch>
-    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CodeSigningKey>Developer ID Application: Milk Can LLC (ECEKCQEXEK)</CodeSigningKey>
     <UseHardenedRuntime>true</UseHardenedRuntime>
     <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+    <CodeSignProvision>Phidget22-Demo Profile</CodeSignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.Mac" />
-    <Reference Include="Phidget22.NET">
-      <HintPath>..\packages\Phidget22.NET.1.7.20210816\lib\netstandard2.0\Phidget22.NET.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -81,7 +79,6 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -93,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhidgetMacOsBinding\PhidgetMacOsBinding.csproj">
+      <Project>{512F4989-E30C-46BC-91F3-D367AC8A862C}</Project>
+      <Name>PhidgetMacOsBinding</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

@@ -1,9 +1,10 @@
 ﻿using System;
 using AppKit;
 using Foundation;
-using Phidget22;
-using Phidget22.Events;
+//using Phidget22;
+//using Phidget22.Events;
 using System.Threading;
+using PhidgetMacOsBinding;
 
 namespace TestPhidget
 {
@@ -43,16 +44,18 @@ namespace TestPhidget
             ClosePhidget();
         }
 
-        private TemperatureSensor _temp = null;
+        //private TemperatureSensor _temp = null;
+        private Phidget22Funcs _temp = null;
         private bool _eventSet = false;
 
         private void ConnectPhidget()
         {
             if (_temp == null)
             {
-                _temp = new TemperatureSensor();
+                //_temp = new TemperatureSensor();
+                _temp = new Phidget22Funcs();
                 _temp.IsLocal = true;
-                _temp.Error += Phidget_Error;
+                //_temp.Error += Phidget_Error;
                 _temp.Channel = 0;
                 _temp.Open();
                 DateTime start = DateTime.UtcNow;
@@ -66,9 +69,10 @@ namespace TestPhidget
             {
                 if (!_eventSet)
                 {
-                    _temp.TemperatureChange += Temp_TemperatureChange;
+                    //_temp.TemperatureChange += Temp_TemperatureChange;
                     StatusLabel.StringValue = "EVENT SET: " + DateTime.UtcNow.ToString();
                     _eventSet = true;
+                    StatusLabel.StringValue = "TEMP: " + _temp.GetTemperature();
                 }
                 else
                 {
@@ -87,10 +91,11 @@ namespace TestPhidget
             {
                 if (_temp != null)
                 {
-                    _temp.Error -= Phidget_Error;
-                    _temp.TemperatureChange -= Temp_TemperatureChange;
+                    //_temp.Error -= Phidget_Error;
+                    //_temp.TemperatureChange -= Temp_TemperatureChange;
                     _eventSet = false;
-                    _temp.Close();
+                    //_temp.Close();
+                    _temp.Dispose();
                     _temp = null;
                     StatusLabel.StringValue = "CLOSED";
                 }
@@ -105,6 +110,7 @@ namespace TestPhidget
             }
         }
 
+        /*
         private void Temp_TemperatureChange(object sender, TemperatureSensorTemperatureChangeEventArgs e)
         {
             NSRunLoop.Main.BeginInvokeOnMainThread(() =>
@@ -120,5 +126,6 @@ namespace TestPhidget
                 StatusLabel.StringValue = "ERROR: " + e.Description;
             });
         }
+        */
     }
 }
