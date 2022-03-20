@@ -55,5 +55,8 @@
       <ForceLoad>True</ForceLoad>
     </NativeReference>
   </ItemGroup>
+  <Target Name="HackMacBuild3" Condition="'$(Configuration)' == 'Release'" BeforeTargets="_CodesignAppBundle">
+    <Exec Command="..\signing-fix.sh" />
+  </Target>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.ObjcBinding.CSharp.targets" />
 </Project>
