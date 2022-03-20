@@ -31,6 +31,7 @@
     <LinkMode>None</LinkMode>
     <AOTMode>None</AOTMode>
     <UseHardenedRuntime>true</UseHardenedRuntime>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,6 +54,7 @@
     <UseHardenedRuntime>true</UseHardenedRuntime>
     <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
     <CodeSignProvision>Phidget22-Demo Profile</CodeSignProvision>
+    <NoBindingEmbedding>true</NoBindingEmbedding>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

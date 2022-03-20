@@ -49,7 +49,7 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\..\Mill City\Phidget Library\libphidget22\Phidget22.framework">
+    <NativeReference Include="..\PhidgetLibrary\Phidget22.Framework">
       <Kind>Framework</Kind>
       <IsCxx>True</IsCxx>
       <ForceLoad>True</ForceLoad>
